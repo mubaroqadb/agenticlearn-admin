@@ -1,9 +1,9 @@
+// Import shared components
+import { apiClient } from "https://YOUR_USERNAME.github.io/agenticlearn-shared/js/api-client.js";
+import { UIComponents } from "https://YOUR_USERNAME.github.io/agenticlearn-shared/js/ui-components.js";
 import { getCookie } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.js";
 import { setInner, onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
-import { getWithToken } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/url.js";
-
-const API_BASE_URL = "https://agenticlearn-api-production.up.railway.app/api/v1";
 
 async function initializeAdminConsole() {
     const token = getCookie("login");
@@ -13,45 +13,53 @@ async function initializeAdminConsole() {
     }
 
     try {
-        // Verify admin access
-        const response = await getWithToken(`${API_BASE_URL}/auth/me`, "login", token);
+        // Verify admin access using shared API client
+        const response = await apiClient.request("/auth/me");
         if (response.user.role !== 'admin') {
-            alert("Access denied. Admin privileges required.");
+            UIComponents.showNotification("Access denied. Admin privileges required.", "error");
             redirect("https://YOUR_USERNAME.github.io/agenticlearn-auth");
             return;
         }
 
         setInner("admin-name", response.user.name);
-        
+
         // Load admin data
-        await loadSystemMetrics(token);
-        await loadGreenMetrics(token);
-        await loadUserData(token);
-        
+        await loadSystemMetrics();
+        await loadGreenMetrics();
+        await loadUserData();
+
         // Setup event listeners
         setupEventListeners();
-        
+
         // Auto-refresh every 30 seconds
         setInterval(() => {
-            loadSystemMetrics(token);
-            loadGreenMetrics(token);
+            loadSystemMetrics();
+            loadGreenMetrics();
+            updateCarbonIndicator();
         }, 30000);
-        
-        console.log("🌱 Admin Console loaded with JSCroot");
+
+        // Show welcome notification
+        UIComponents.showNotification(`Welcome, ${response.user.name}! Admin console loaded.`, "success");
+
+        // Update carbon indicator
+        updateCarbonIndicator();
+
+        console.log("🌱 Admin Console loaded with shared components");
     } catch (error) {
         console.error("Failed to load admin console:", error);
         setInner("admin-name", "Error loading console");
+        UIComponents.showNotification("Failed to load admin console", "error");
     }
 }
 
-async function loadSystemMetrics(token) {
+async function loadSystemMetrics() {
     try {
-        const metrics = await getWithToken(`${API_BASE_URL}/admin/analytics`, "login", token);
-        
+        const metrics = await apiClient.request("/admin/analytics");
+
         setInner("total-users", metrics.totalUsers || 0);
         setInner("active-sessions", metrics.activeSessions || 0);
         setInner("api-requests", metrics.apiRequestsPerHour || 0);
-        
+
         // Update system status
         const statusElement = document.getElementById("system-status");
         if (metrics.systemHealth > 90) {
@@ -64,31 +72,33 @@ async function loadSystemMetrics(token) {
             statusElement.className = "metric-value status-error";
             statusElement.textContent = "●";
         }
-        
+
     } catch (error) {
         console.error("Failed to load system metrics:", error);
         setInner("total-users", "Error");
+        UIComponents.showNotification("Failed to load system metrics", "warning");
     }
 }
 
-async function loadGreenMetrics(token) {
+async function loadGreenMetrics() {
     try {
-        const greenData = await getWithToken(`${API_BASE_URL}/admin/green-metrics`, "login", token);
-        
+        const greenData = await apiClient.request("/admin/green-metrics");
+
         setInner("carbon-footprint", (greenData.totalCarbon || 0).toFixed(3));
         setInner("energy-efficiency", (greenData.energyEfficiency || 0).toFixed(1) + "%");
         setInner("cache-hit-ratio", (greenData.cacheHitRatio || 0).toFixed(1) + "%");
         setInner("green-score", greenData.greenScore || 0);
-        
+
     } catch (error) {
         console.error("Failed to load green metrics:", error);
         setInner("carbon-footprint", "Error");
+        UIComponents.showNotification("Failed to load green metrics", "warning");
     }
 }
 
-async function loadUserData(token) {
+async function loadUserData() {
     try {
-        const users = await getWithToken(`${API_BASE_URL}/admin/users`, "login", token);
+        const users = await apiClient.request("/admin/users");
         
         let userListHTML = `
             <table style="width: 100%; border-collapse: collapse;">
@@ -129,26 +139,35 @@ async function loadUserData(token) {
     } catch (error) {
         console.error("Failed to load user data:", error);
         setInner("user-list", "<p>Error loading user data</p>");
+        UIComponents.showNotification("Failed to load user data", "warning");
+    }
+}
+
+function updateCarbonIndicator() {
+    const metrics = apiClient.getCarbonMetrics();
+    const indicator = document.getElementById("carbon-indicator");
+    if (indicator) {
+        indicator.textContent = `🌱 ${metrics.totalCarbon.toFixed(6)}g CO2`;
     }
 }
 
 function setupEventListeners() {
     // User Management
     onClick("btn-view-users", () => {
-        alert("Feature: View All Users - Opening user management interface");
+        UIComponents.showNotification("Opening user management interface...", "info");
     });
-    
+
     onClick("btn-create-user", () => {
         const email = prompt("Enter user email:");
         const role = prompt("Enter user role (student/educator/admin):");
         if (email && role) {
-            alert(`Creating user: ${email} with role: ${role}`);
+            UIComponents.showNotification(`Creating user: ${email} with role: ${role}`, "success");
             // TODO: Implement user creation
         }
     });
-    
+
     onClick("btn-export-data", () => {
-        alert("Feature: Export Data - Generating CSV export");
+        UIComponents.showNotification("Generating CSV export...", "info");
     });
     
     // AI Management

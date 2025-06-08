@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgenticLearn - Admin Console</title>
+
+    <!-- Import Shared CSS -->
+    <link rel="stylesheet" href="https://YOUR_USERNAME.github.io/agenticlearn-shared/css/green-components.css">
+
     <style>
         :root { --primary: #2563eb; --success: #059669; --error: #dc2626; --warning: #f59e0b; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -104,6 +108,11 @@
                 <button class="btn" style="background: var(--error);" id="btn-emergency">Emergency Stop</button>
             </div>
         </section>
+    </div>
+
+    <!-- Green Computing Indicator -->
+    <div class="carbon-indicator" id="carbon-indicator">
+        🌱 0.000g CO2
     </div>
 
     <script type="module" src="./js/admin-console.js"></script>
