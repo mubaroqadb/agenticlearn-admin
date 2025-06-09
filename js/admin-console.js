@@ -18,7 +18,7 @@ const compatApiClient = {
             const token = getCookie("access_token") || getCookie("login");
             const baseURL = window.location.hostname.includes('localhost')
                 ? "http://localhost:8080/api/v1"
-                : "https://agenticlearn-backend-production.up.railway.app/api/v1";
+                : "https://api.agenticlearn.com/api/v1"; // Will be Google Cloud endpoint
 
             const response = await fetch(`${baseURL}${endpoint}`, {
                 headers: {
@@ -290,7 +290,7 @@ function setupEventListeners() {
     onClick("btn-logs", () => {
         const baseURL = window.location.hostname.includes('localhost')
             ? "http://localhost:8080/api/v1"
-            : "https://agenticlearn-backend-production.up.railway.app/api/v1";
+            : "https://api.agenticlearn.com/api/v1"; // Will be Google Cloud endpoint
         window.open(`${baseURL}/admin/logs`, '_blank');
     });
     
