@@ -17,8 +17,8 @@ const compatApiClient = {
             // Fallback to direct backend call
             const token = getCookie("access_token") || getCookie("login");
             const baseURL = window.location.hostname.includes('localhost')
-                ? "https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid/api/agenticlearn"
-                : "https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid/api/agenticlearn"; // Will be Google Cloud endpoint
+                ? "http://localhost:8080/api/v1"
+                : "https://api.agenticlearn.com/api/v1"; // Will be Google Cloud endpoint
 
             const response = await fetch(`${baseURL}${endpoint}`, {
                 headers: {
@@ -289,8 +289,8 @@ function setupEventListeners() {
     
     onClick("btn-logs", () => {
         const baseURL = window.location.hostname.includes('localhost')
-            ? "https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid/api/agenticlearn"
-            : "https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid/api/agenticlearn"; // Will be Google Cloud endpoint
+            ? "http://localhost:8080/api/v1"
+            : "https://api.agenticlearn.com/api/v1"; // Will be Google Cloud endpoint
         window.open(`${baseURL}/admin/logs`, '_blank');
     });
     
