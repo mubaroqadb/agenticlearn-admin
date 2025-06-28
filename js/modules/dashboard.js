@@ -3,9 +3,9 @@
  * System overview, metrics, and real-time monitoring
  */
 
-import { UIComponents } from '../core/ui-components.js';
+import UIComponents from '../core/ui-components.js';
 
-export class DashboardModule {
+class DashboardModule {
     constructor(apiClient) {
         this.api = apiClient;
         this.dashboardData = null;

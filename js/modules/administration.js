@@ -3,9 +3,9 @@
  * Comprehensive system settings, security, backup, and maintenance tools
  */
 
-import { UIComponents } from '../core/ui-components.js';
+import UIComponents from '../core/ui-components.js';
 
-export class AdministrationModule {
+class AdministrationModule {
     constructor(apiClient) {
         this.api = apiClient;
         this.adminData = null;

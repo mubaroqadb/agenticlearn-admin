@@ -3,9 +3,9 @@
  * Comprehensive analytics, insights, and reporting system
  */
 
-import { UIComponents } from '../core/ui-components.js';
+import UIComponents from '../core/ui-components.js';
 
-export class AnalyticsModule {
+class AnalyticsModule {
     constructor(apiClient) {
         this.api = apiClient;
         this.analyticsData = null;

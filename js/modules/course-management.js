@@ -3,9 +3,9 @@
  * Comprehensive course and curriculum management
  */
 
-import { UIComponents } from '../core/ui-components.js';
+import UIComponents from '../core/ui-components.js';
 
-export class CourseManagementModule {
+class CourseManagementModule {
     constructor(apiClient) {
         this.api = apiClient;
         this.courses = [];

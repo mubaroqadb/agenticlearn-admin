@@ -3,9 +3,9 @@
  * Comprehensive user management for students, educators, and admins
  */
 
-import { UIComponents } from '../core/ui-components.js';
+import UIComponents from '../core/ui-components.js';
 
-export class UserManagementModule {
+class UserManagementModule {
     constructor(apiClient) {
         this.api = apiClient;
         this.users = [];

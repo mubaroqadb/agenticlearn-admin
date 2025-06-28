@@ -3,9 +3,9 @@
  * Comprehensive AI model monitoring, tuning, and performance management
  */
 
-import { UIComponents } from '../core/ui-components.js';
+import UIComponents from '../core/ui-components.js';
 
-export class AIManagementModule {
+class AIManagementModule {
     constructor(apiClient) {
         this.api = apiClient;
         this.aiData = null;
