@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgenticLearn - Admin Portal</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/admin-portal.css">
+    
+    <!-- Meta Tags for Green Computing -->
+    <meta name="description" content="AgenticLearn Admin Portal - Sustainable Learning Management System">
+    <meta name="keywords" content="admin, learning management, green computing, education">
+    <meta name="theme-color" content="#667b68">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">🌱</div>
+            <h2>AgenticLearn Admin Portal</h2>
+            <p>Initializing system management interface...</p>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app" class="app-container" style="display: none;">
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <span class="hamburger"></span>
+                </button>
+                <div class="header-title">
+                    <h1>🌱 AgenticLearn Admin</h1>
+                    <span class="header-subtitle">System Management Portal</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">System Status</span>
+                        <span class="stat-value status-indicator" id="system-status">●</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Active Users</span>
+                        <span class="stat-value" id="active-users">-</span>
+                    </div>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="profile-info">
+                        <div class="profile-name" id="admin-name">Loading...</div>
+                        <div class="profile-role">System Administrator</div>
+                    </div>
+                    <div class="profile-avatar" id="admin-avatar">A</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                
+                <!-- Dashboard -->
+                <div class="menu-section">
+                    <div class="menu-section-title">📊 Overview</div>
+                    <div class="menu-item active" data-page="dashboard">
+                        <span class="menu-icon">📈</span>
+                        <span class="menu-text">Dashboard</span>
+                    </div>
+                </div>
+
+                <!-- Management -->
+                <div class="menu-section">
+                    <div class="menu-section-title">👥 Management</div>
+                    <div class="menu-item" data-page="users">
+                        <span class="menu-icon">👤</span>
+                        <span class="menu-text">User Management</span>
+                    </div>
+                    <div class="menu-item" data-page="courses">
+                        <span class="menu-icon">📚</span>
+                        <span class="menu-text">Course Management</span>
+                    </div>
+                </div>
+
+                <!-- Analytics -->
+                <div class="menu-section">
+                    <div class="menu-section-title">📊 Analytics</div>
+                    <div class="menu-item" data-page="analytics">
+                        <span class="menu-icon">📊</span>
+                        <span class="menu-text">Analytics & Reports</span>
+                    </div>
+                    <div class="menu-item" data-page="ai-management">
+                        <span class="menu-icon">🤖</span>
+                        <span class="menu-text">AI Management</span>
+                    </div>
+                </div>
+
+                <!-- System -->
+                <div class="menu-section">
+                    <div class="menu-section-title">⚙️ System</div>
+                    <div class="menu-item" data-page="administration">
+                        <span class="menu-icon">🔧</span>
+                        <span class="menu-text">Administration</span>
+                    </div>
+                    <div class="menu-item" data-page="settings">
+                        <span class="menu-icon">⚙️</span>
+                        <span class="menu-text">Settings</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <div class="green-indicator">
+                    <span class="green-icon">🌱</span>
+                    <div class="green-info">
+                        <div class="green-label">Carbon Footprint</div>
+                        <div class="green-value" id="carbon-footprint">0.000g CO2</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Dashboard Page -->
+            <div id="page-dashboard" class="page-content active">
+                <div id="dashboard-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>📈 Loading Dashboard...</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management Page -->
+            <div id="page-users" class="page-content">
+                <div id="users-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>👥 Loading User Management...</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Management Page -->
+            <div id="page-courses" class="page-content">
+                <div id="courses-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>📚 Loading Course Management...</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Page -->
+            <div id="page-analytics" class="page-content">
+                <div id="analytics-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>📊 Loading Analytics...</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Management Page -->
+            <div id="page-ai-management" class="page-content">
+                <div id="ai-management-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>🤖 Loading AI Management...</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Administration Page -->
+            <div id="page-administration" class="page-content">
+                <div id="administration-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>🔧 Loading Administration...</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="page-settings" class="page-content">
+                <div id="settings-content">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <h3>⚙️ Loading Settings...</h3>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js?v=2024062801"></script>
+</body>
+</html>
