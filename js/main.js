@@ -4,16 +4,16 @@
  */
 
 // Import core modules
-import { APIClient } from './core/api-client.js';
-import { UIComponents } from './core/ui-components.js';
+import APIClient from './core/api-client.js';
+import UIComponents from './core/ui-components.js';
 
 // Import admin modules
-import { DashboardModule } from './modules/dashboard.js';
-import { UserManagementModule } from './modules/user-management.js';
-import { CourseManagementModule } from './modules/course-management.js';
-import { AnalyticsModule } from './modules/analytics.js';
-import { AIManagementModule } from './modules/ai-management.js';
-import { AdministrationModule } from './modules/administration.js';
+import DashboardModule from './modules/dashboard.js';
+import UserManagementModule from './modules/user-management.js';
+import CourseManagementModule from './modules/course-management.js';
+import AnalyticsModule from './modules/analytics.js';
+import AIManagementModule from './modules/ai-management.js';
+import AdministrationModule from './modules/administration.js';
 
 /**
  * Main Admin Portal Application Class

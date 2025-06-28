@@ -3,7 +3,7 @@
  * Reusable UI components with consistent styling
  */
 
-export class UIComponents {
+class UIComponents {
     
     /**
      * Show notification message

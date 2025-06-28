@@ -795,5 +795,3 @@ export class AdministrationModule {
 }
 
 export default AdministrationModule;
-
-export default AdministrationModule;

@@ -1570,5 +1570,3 @@ export class AnalyticsModule {
 }
 
 export default AnalyticsModule;
-
-export default AnalyticsModule;

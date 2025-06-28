@@ -3,7 +3,7 @@
  * Handles all backend communication with proper error handling
  */
 
-export class APIClient {
+class APIClient {
     constructor() {
         this.baseURL = 'https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid';
         this.timeout = 10000; // 10 seconds

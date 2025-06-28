@@ -1318,5 +1318,3 @@ export class AIManagementModule {
 }
 
 export default AIManagementModule;
-
-export default AIManagementModule;
