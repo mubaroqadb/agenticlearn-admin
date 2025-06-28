@@ -5,7 +5,7 @@
 
 export class APIClient {
     constructor() {
-        this.baseURL = 'https://agenticai-production.up.railway.app';
+        this.baseURL = 'https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid';
         this.timeout = 10000; // 10 seconds
     }
 
