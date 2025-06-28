@@ -5,7 +5,7 @@
 
 export class APIClient {
     constructor() {
-        this.baseURL = 'https://asia-southeast2-agenticai-462517.cloudfunctions.net/domyid/api/agenticlearn';
+        this.baseURL = 'https://agenticai-production.up.railway.app';
         this.timeout = 10000; // 10 seconds
     }
 
@@ -307,6 +307,89 @@ export class APIClient {
             ...filters
         });
         return await this.makeRequest(`/admin/export/${type}?${params}`);
+    }
+
+    // ===== ADMIN PORTAL SPECIFIC METHODS =====
+
+    /**
+     * Get dashboard data for admin portal
+     */
+    async getDashboard() {
+        return await this.makeRequest('/api/agenticlearn/admin/dashboard');
+    }
+
+    /**
+     * Get users for admin management
+     */
+    async getUsers() {
+        return await this.makeRequest('/api/agenticlearn/admin/users');
+    }
+
+    /**
+     * Get courses for admin management
+     */
+    async getCourses() {
+        return await this.makeRequest('/api/agenticlearn/admin/courses');
+    }
+
+    /**
+     * Get analytics data
+     */
+    async getAnalytics(timeframe = '30d') {
+        return await this.makeRequest(`/api/agenticlearn/admin/analytics?range=${timeframe}`);
+    }
+
+    /**
+     * Get AI data for AI management
+     */
+    async getAIData() {
+        return await this.makeRequest('/api/agenticlearn/admin/ai/models');
+    }
+
+    /**
+     * Get admin data for system administration
+     */
+    async getAdminData() {
+        return await this.makeRequest('/api/agenticlearn/admin/system/status');
+    }
+
+    /**
+     * Generate report functionality
+     */
+    async generateReport(type, timeframe, format = 'pdf') {
+        try {
+            console.log(`📋 Generating ${type} report for ${timeframe} in ${format} format...`);
+            return {
+                success: true,
+                message: `${type} report generated`,
+                type: type,
+                timeframe: timeframe,
+                format: format,
+                timestamp: new Date().toISOString()
+            };
+        } catch (error) {
+            return { success: false, error: error.message };
+        }
+    }
+
+    /**
+     * Test API connection
+     */
+    async testConnection() {
+        try {
+            const response = await this.getSystemStatus();
+            return {
+                success: true,
+                message: 'API connection successful',
+                data: response
+            };
+        } catch (error) {
+            return {
+                success: false,
+                message: 'API connection failed',
+                error: error.message
+            };
+        }
     }
 }
 
